@@ -1,0 +1,79 @@
+menu.UploadSpeed=Upload Speed
+menu.CpuFrequency=CPU Frequency
+menu.FlashSize=Flash Size
+menu.FlashMode=Flash Mode
+menu.FlashFreq=Flash Frequency
+menu.UploadTool=Upload Using
+menu.ResetMethod=Reset Method
+menu.ESPModule=Module
+menu.Debug=Debug port
+menu.DebugLevel=Debug Level
+
+##############################################################
+ArduCAM_ESP8266_UNO.name=ArduCAM ESP8266 UNO
+
+ArduCAM_ESP8266_UNO.upload.tool=esptool
+ArduCAM_ESP8266_UNO.upload.speed=460800
+ArduCAM_ESP8266_UNO.upload.resetmethod=nodemcu
+ArduCAM_ESP8266_UNO.upload.maximum_size=1044464
+ArduCAM_ESP8266_UNO.upload.maximum_data_size=81920
+ArduCAM_ESP8266_UNO.upload.wait_for_upload_port=true
+ArduCAM_ESP8266_UNO.serial.disableDTR=true
+ArduCAM_ESP8266_UNO.serial.disableRTS=true
+
+ArduCAM_ESP8266_UNO.build.mcu=esp8266
+ArduCAM_ESP8266_UNO.build.f_cpu=80000000L
+ArduCAM_ESP8266_UNO.build.board=ESP8266_ESP12
+ArduCAM_ESP8266_UNO.build.core=esp8266
+ArduCAM_ESP8266_UNO.build.variant=ArduCAM_ESP8266_UNO
+ArduCAM_ESP8266_UNO.build.flash_mode=dio
+ArduCAM_ESP8266_UNO.build.flash_size=4M
+ArduCAM_ESP8266_UNO.build.flash_freq=40
+ArduCAM_ESP8266_UNO.build.debug_port=
+ArduCAM_ESP8266_UNO.build.debug_level=
+
+ArduCAM_ESP8266_UNO.menu.CpuFrequency.80=80 MHz
+ArduCAM_ESP8266_UNO.menu.CpuFrequency.80.build.f_cpu=80000000L
+ArduCAM_ESP8266_UNO.menu.CpuFrequency.160=160 MHz
+ArduCAM_ESP8266_UNO.menu.CpuFrequency.160.build.f_cpu=160000000L
+
+ArduCAM_ESP8266_UNO.menu.UploadSpeed.921600=921600
+ArduCAM_ESP8266_UNO.menu.UploadSpeed.921600.upload.speed=921600
+ArduCAM_ESP8266_UNO.menu.UploadSpeed.115200=115200
+ArduCAM_ESP8266_UNO.menu.UploadSpeed.115200.upload.speed=115200
+ArduCAM_ESP8266_UNO.menu.UploadSpeed.9600=9600
+ArduCAM_ESP8266_UNO.menu.UploadSpeed.9600.upload.speed=9600
+ArduCAM_ESP8266_UNO.menu.UploadSpeed.57600=57600
+ArduCAM_ESP8266_UNO.menu.UploadSpeed.57600.upload.speed=57600
+ArduCAM_ESP8266_UNO.menu.UploadSpeed.256000.windows=256000
+ArduCAM_ESP8266_UNO.menu.UploadSpeed.256000.upload.speed=256000
+ArduCAM_ESP8266_UNO.menu.UploadSpeed.230400.linux=230400
+ArduCAM_ESP8266_UNO.menu.UploadSpeed.230400.macosx=230400
+ArduCAM_ESP8266_UNO.menu.UploadSpeed.230400.macosx=230400
+ArduCAM_ESP8266_UNO.menu.UploadSpeed.230400.upload.speed=230400
+ArduCAM_ESP8266_UNO.menu.UploadSpeed.460800.linux=460800
+ArduCAM_ESP8266_UNO.menu.UploadSpeed.460800.macosx=460800
+ArduCAM_ESP8266_UNO.menu.UploadSpeed.460800.upload.speed=460800
+ArduCAM_ESP8266_UNO.menu.UploadSpeed.512000.windows=512000
+ArduCAM_ESP8266_UNO.menu.UploadSpeed.512000.upload.speed=512000
+
+
+ArduCAM_ESP8266_UNO.menu.FlashSize.4M3M=4M (3M SPIFFS)
+ArduCAM_ESP8266_UNO.menu.FlashSize.4M3M.build.flash_size=4M
+ArduCAM_ESP8266_UNO.menu.FlashSize.4M3M.build.flash_ld=eagle.flash.4m.ld
+ArduCAM_ESP8266_UNO.menu.FlashSize.4M3M.build.spiffs_start=0x100000
+ArduCAM_ESP8266_UNO.menu.FlashSize.4M3M.build.spiffs_end=0x3FB000
+ArduCAM_ESP8266_UNO.menu.FlashSize.4M3M.build.spiffs_blocksize=8192
+ArduCAM_ESP8266_UNO.menu.FlashSize.4M3M.build.spiffs_pagesize=256
+
+ArduCAM_ESP8266_UNO.menu.FlashSize.4M1M=4M (1M SPIFFS)
+ArduCAM_ESP8266_UNO.menu.FlashSize.4M1M.build.flash_size=4M
+ArduCAM_ESP8266_UNO.menu.FlashSize.4M1M.build.flash_ld=eagle.flash.4m1m.ld
+ArduCAM_ESP8266_UNO.menu.FlashSize.4M1M.build.spiffs_start=0x300000
+ArduCAM_ESP8266_UNO.menu.FlashSize.4M1M.build.spiffs_end=0x3FB000
+ArduCAM_ESP8266_UNO.menu.FlashSize.4M1M.build.spiffs_blocksize=8192
+ArduCAM_ESP8266_UNO.menu.FlashSize.4M1M.build.spiffs_pagesize=256
+
+
+
+
