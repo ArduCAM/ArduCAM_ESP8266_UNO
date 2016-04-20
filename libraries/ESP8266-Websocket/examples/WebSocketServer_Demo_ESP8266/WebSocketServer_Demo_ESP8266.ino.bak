@@ -13,8 +13,8 @@
 
 #include <WebSocketServer.h>
 
-const char* ssid = "TP-LINK_Lee";
-const char* password = "00180605";
+const char* ssid = "SSID HERE";
+const char* password = "PASSWORD HERE";
 WiFiServer server(80);
 WebSocketServer webSocketServer;
 
