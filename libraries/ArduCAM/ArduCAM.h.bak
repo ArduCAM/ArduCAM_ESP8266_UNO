@@ -342,6 +342,9 @@ class ArduCAM
 		byte sensor_addr; 
 		//my added
     boolean  hwSPI;
+    void transferBytes_(uint8_t * out, uint8_t * in, uint8_t size);
+    void transferBytes(uint8_t * out, uint8_t * in, uint32_t size);
+    inline void setDataBits(uint16_t bits);
 };
 
 #endif

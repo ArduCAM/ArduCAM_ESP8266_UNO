@@ -21,7 +21,6 @@
 
 #include "SPI.h"
 #include "HardwareSerial.h"
-bool SPI_Send_OV5642_data=0;
 typedef union {
         uint32_t regValue;
         struct {
@@ -448,12 +447,8 @@ void SPIClass::transferBytes_(uint8_t * out, uint8_t * in, uint8_t size) {
         volatile uint8_t * fifoPtr8 = (volatile uint8_t *) &SPI1W0;
         dataSize = size;
         while(dataSize--) {
-        		#if defined(OV5642_CAM)
+        		
         		*in = *fifoPtr8;
-						*in = (byte)(*in >> 1) | (*in << 7); 
-						#else
-						 *in = *fifoPtr8;
-					  #endif
             in++;
             fifoPtr8++;
         }

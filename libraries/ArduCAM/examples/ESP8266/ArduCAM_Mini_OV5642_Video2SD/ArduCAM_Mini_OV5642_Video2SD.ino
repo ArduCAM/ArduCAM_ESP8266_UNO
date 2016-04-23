@@ -5,7 +5,8 @@
 #include "memorysaver.h"
 // set pin 1 as the slave select for SD:
 #define SD_CS 1
-
+// set the num of picture
+#define pic_num 500
 //set pin 16 as the slave select for SPI:
 const int SPI_CS = 16;
 
@@ -70,7 +71,7 @@ void Video2SD(){
   }
   outFile.write(buf, AVIOFFSET);
   //Write video data
-  for ( frame_cnt = 0; frame_cnt < 500; frame_cnt ++)
+  for ( frame_cnt = 0; frame_cnt < pic_num; frame_cnt ++)
   {
         yield(); 
     //Capture a frame            
@@ -182,6 +183,9 @@ void setup(){
     Serial.println("SPI interface Error!");
     while (1);
   }
+
+  myCAM.clear_bit(ARDUCHIP_GPIO,GPIO_PWDN_MASK); //disable low power
+ delay(100);
 //Check if the camera module type is OV5642
   myCAM.wrSensorReg16_8(0xff, 0x01);
   myCAM.rdSensorReg16_8(OV5642_CHIPID_HIGH, &vid);
@@ -205,7 +209,12 @@ void setup(){
     Serial.println("SD Card detected!");
 }
 void loop(){
+  
   Video2SD();
+  myCAM.set_bit(ARDUCHIP_GPIO,GPIO_PWDN_MASK);  //enable low power
+  delay(3000);
+  myCAM.clear_bit(ARDUCHIP_GPIO,GPIO_PWDN_MASK); //disable low power
+  delay(2000);
 }
 
 

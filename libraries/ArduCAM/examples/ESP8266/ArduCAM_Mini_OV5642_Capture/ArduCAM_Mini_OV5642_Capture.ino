@@ -17,13 +17,8 @@
 // Define how many callback functions you have. Default is 1.
 #define CALLBACK_FUNCTIONS 1
 
-#if defined(ESP8266)
-// set GPIO15 as the slave select :
+// set GPIO16 as the slave select :
 const int CS = 16;
-#else
-// set pin 10 as the slave select :
-const int CS = 10;
-#endif
 
 int wifiType = 0; // 0:Station  1:AP
 const char* ssid = "SSID"; // Put your SSID here
@@ -65,7 +60,7 @@ void camCapture(ArduCAM myCAM){
   
   while (len) {
       size_t will_copy = (len < bufferSize) ? len : bufferSize;
-      SPI.transferBytes(&buffer[0], &buffer[0], will_copy);
+      myCAM.transferBytes(&buffer[0], &buffer[0], will_copy);
       if (!client.connected()) break;
       client.write(&buffer[0], will_copy);
       len -= will_copy;
@@ -133,7 +128,7 @@ void serverStream(){
     
     while (len) {
       size_t will_copy = (len < bufferSize) ? len : bufferSize;
-      SPI.transferBytes(&buffer[0], &buffer[0], will_copy);
+      myCAM.transferBytes(&buffer[0], &buffer[0], will_copy);
       if (!client.connected()) break;
       client.write(&buffer[0], will_copy);
       len -= will_copy;

@@ -17,17 +17,12 @@
 // Define how many callback functions you have. Default is 1.
 #define CALLBACK_FUNCTIONS 1
 
-#if defined(ESP8266)
-// set GPIO15 as the slave select :
+// set GPIO16 as the slave select :
 const int CS = 16;
-#else
-// set pin 10 as the slave select :
-const int CS = 10;
-#endif
 
 int wifiType = 0; // 0:Station  1:AP
 const char* ssid = "SSID"; // Put your SSID here
-const char* password = "Password"; // Put your PASSWORD here
+const char* password = "PASSWORD"; // Put your PASSWORD here
 
 ESP8266WebServer server(80);
 

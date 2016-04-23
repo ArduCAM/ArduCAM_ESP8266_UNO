@@ -5,7 +5,7 @@
 #include "memorysaver.h"
 // set pin 1 as the slave select for SD:
 #define SD_CS 1
-
+#define pic_mun 500
 //set pin 16 as the slave select for SPI:
 const int SPI_CS = 16;
 
@@ -70,7 +70,7 @@ void Video2SD(){
   }
   outFile.write(buf, AVIOFFSET);
   //Write video data
-  for ( frame_cnt = 0; frame_cnt < 500; frame_cnt ++)
+  for ( frame_cnt = 0; frame_cnt < pic_mun; frame_cnt ++)
   {
         yield(); 
     //Capture a frame            

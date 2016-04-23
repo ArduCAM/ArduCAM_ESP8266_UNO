@@ -76,6 +76,7 @@ void myCAMSaveToSDFile(){
 void setup(){
   uint8_t vid, pid;
   uint8_t temp;
+
   Wire.begin();
   Serial.begin(115200);
   Serial.println("ArduCAM Start!");
@@ -91,9 +92,6 @@ void setup(){
   myCAM.write_reg(ARDUCHIP_TEST1, 0x55);
   temp = myCAM.read_reg(ARDUCHIP_TEST1);
    
-  //debug use 
-  Serial.println(temp,DEC);
-
   if (temp != 0x55){
     Serial.println("SPI1 interface Error!");
     //while(1);
@@ -104,9 +102,9 @@ void setup(){
   }
   else
   Serial.println("SD Card detected!");
-  
- 
-  
+   
+  myCAM.clear_bit(ARDUCHIP_GPIO,GPIO_PWDN_MASK); //disable low power
+  delay(100);
 //Check if the camera module type is OV5642
   myCAM.wrSensorReg16_8(0xff, 0x01);
   myCAM.rdSensorReg16_8(OV5642_CHIPID_HIGH, &vid);
@@ -122,8 +120,13 @@ void setup(){
 }
 
 void loop(){
-  delay(5000);
   myCAMSaveToSDFile();
+  myCAM.set_bit(ARDUCHIP_GPIO,GPIO_PWDN_MASK);  //enable low power
+  delay(3000);
+   myCAM.clear_bit(ARDUCHIP_GPIO,GPIO_PWDN_MASK); //disable low power
+   delay(2000);
+  
+  
 }
 
 

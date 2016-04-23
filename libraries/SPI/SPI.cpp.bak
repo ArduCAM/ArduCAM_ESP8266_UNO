@@ -449,7 +449,8 @@ void SPIClass::transferBytes_(uint8_t * out, uint8_t * in, uint8_t size) {
         dataSize = size;
         while(dataSize--) {
         		#if defined(OV5642_CAM)
-						*in = (byte)(*in >> 1) | (*in << 7); 
+        		*in = *fifoPtr8;
+						//*in = (byte)(*in >> 1) | (*in << 7); 
 						#else
 						 *in = *fifoPtr8;
 					  #endif
