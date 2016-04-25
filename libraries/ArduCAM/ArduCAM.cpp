@@ -174,7 +174,9 @@ uint8_t ArduCAM::bus_read(int address) {
   // take the SS pin low to select the chip:
   cbi(P_CS, B_CS);
   //  send in the address and value via SPI:
-  if( hwSPI ){
+  #if defined(ESP8266)
+  
+  #if defined(OV5642_CAM)
       SPI.transfer(address);
 		  value = SPI.transfer(0x00);
 		  
@@ -186,15 +188,24 @@ uint8_t ArduCAM::bus_read(int address) {
 		  sbi(P_CS, B_CS);
 		  return value;
 	
-  }
-  else
-  	{
+  
+ #endif
+ #if defined(OV2640_CAM)
+  	
   		SPI.transfer(address);
 		  value = SPI.transfer(0x00);
 		  // take the SS pin high to de-select the chip:
 		  sbi(P_CS, B_CS);
 		  return value;
-  	} 
+  	#endif
+  	#else
+  		SPI.transfer(address);
+		  value = SPI.transfer(0x00);
+		  // take the SS pin high to de-select the chip:
+		  sbi(P_CS, B_CS);
+		  return value;
+		#endif
+  	
 }
 
 //Write ArduChip internal registers
@@ -216,20 +227,11 @@ ArduCAM::ArduCAM()
 	sensor_model = OV7670;
 	sensor_addr = 0x42;
 	
-	#if defined(OV5642_CAM)
-	hwSPI = true; 
-	#else
-	hwSPI = false;
-  #endif
+  
 }
 
 ArduCAM::ArduCAM(byte model,int CS)
 {
-	#if defined(OV5642_CAM)
-	hwSPI = true; 
-	#else
-	hwSPI = false;
-  #endif 
 #if defined(ESP8266)
 	B_CS = CS;
 #else
@@ -674,11 +676,13 @@ void ArduCAM::set_format(byte fmt)
 		m_fmt = JPEG;
 }
 
+#if defined(ESP8266)
 inline void ArduCAM::setDataBits(uint16_t bits) {
     const uint32_t mask = ~((SPIMMOSI << SPILMOSI) | (SPIMMISO << SPILMISO));
     bits--;
     SPI1U1 = ((SPI1U1 & mask) | ((bits << SPILMOSI) | (bits << SPILMISO)));
 }
+
 void ArduCAM::transferBytes_(uint8_t * out, uint8_t * in, uint8_t size) {
     while(SPI1CMD & SPIBUSY) {}
     // Set in/out Bits to transfer
@@ -735,6 +739,8 @@ void ArduCAM::transferBytes_(uint8_t * out, uint8_t * in, uint8_t size) {
         }
     }
 }		
+#endif
+
 void ArduCAM::InitCAM()
 {
 	byte rtn = 0;

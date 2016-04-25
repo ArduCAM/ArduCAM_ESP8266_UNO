@@ -17,6 +17,11 @@
 //#define MT9T112_CAM
 //#define MT9D112_CAM
 
+
+/*If Using  Arduino_UNO*/
+
+//#define Arduino_UNO
+
 #if defined OV7660_CAM	
 	#include "ov7660_regs.h"
 #endif

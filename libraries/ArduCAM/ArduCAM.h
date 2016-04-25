@@ -344,8 +344,6 @@ class ArduCAM
   		byte m_fmt;
 		byte sensor_model;
 		byte sensor_addr; 
-		//my added
-    boolean  hwSPI;
    
 };
 
