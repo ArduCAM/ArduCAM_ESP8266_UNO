@@ -220,7 +220,7 @@ class ClientContext {
             if(size == 0) {
                 return 0;
             }
-						_pcb->snd_buf = TCP_SND_BUF;
+            _pcb->snd_buf = TCP_SND_BUF;
             size_t room = tcp_sndbuf(_pcb);
             size_t will_send = (room < size) ? room : size;
             err_t err = tcp_write(_pcb, data, will_send, 0);
@@ -274,6 +274,9 @@ class ClientContext {
             if(pb == 0) // connection closed
             {
                 DEBUGV(":rcl\r\n");
+                if (_send_waiting) {
+                    esp_schedule();
+                }
                 abort();
                 return ERR_ABRT;
             }

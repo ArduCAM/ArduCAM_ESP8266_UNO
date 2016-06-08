@@ -21,7 +21,6 @@
 #ifndef _SPI_H_INCLUDED
 #define _SPI_H_INCLUDED
 
-#include "memorysaver.h"
 #include <Arduino.h>
 #include <stdlib.h>
 
@@ -41,8 +40,6 @@ const uint8_t SPI_MODE0 = 0x00; ///<  CPOL: 0  CPHA: 0
 const uint8_t SPI_MODE1 = 0x01; ///<  CPOL: 0  CPHA: 1
 const uint8_t SPI_MODE2 = 0x10; ///<  CPOL: 1  CPHA: 0
 const uint8_t SPI_MODE3 = 0x11; ///<  CPOL: 1  CPHA: 1
-
-extern bool SPI_Send_OV5642_data;
 
 class SPISettings {
 public:
@@ -78,7 +75,6 @@ public:
 private:
   bool useHwCs;
   void writeBytes_(uint8_t * data, uint8_t size);
-  void writePattern_(uint8_t * data, uint8_t size, uint8_t repeat);
   void transferBytes_(uint8_t * out, uint8_t * in, uint8_t size);
   inline void setDataBits(uint16_t bits);
 };

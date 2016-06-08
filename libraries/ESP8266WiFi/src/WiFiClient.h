@@ -28,7 +28,7 @@
 #include "IPAddress.h"
 #include "include/slist.h"
 
-#define WIFICLIENT_MAX_PACKET_SIZE 2048//1460
+#define WIFICLIENT_MAX_PACKET_SIZE 4096
 
 class ClientContext;
 class WiFiServer;
