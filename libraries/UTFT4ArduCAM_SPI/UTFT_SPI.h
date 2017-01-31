@@ -57,8 +57,8 @@
 #define RIGHT 9999
 #define CENTER 9998
 
-#define PORTRAIT 0
-#define LANDSCAPE 1
+#define PORTRAIT 1
+#define LANDSCAPE 0
 
 #define HX8347A			0
 #define ILI9327			1
@@ -193,6 +193,12 @@
 #if defined(__arm__) || defined(ESP8266)
 	#include "Arduino.h"
 	#include "HW_AVR_SPI_defines.h"
+#endif
+
+#if defined(__CPU_ARC__)
+	#include "Arduino.h"
+	#include "HW_AVR_SPI_defines.h"
+
 #endif
 
 #define BMPIMAGEOFFSET 66

@@ -1,6 +1,9 @@
 #ifndef _MEMORYSAVER_
 #define _MEMORYSAVER_
 
+//Only when using raspberry,enable it
+//#define RASPBERRY_PI
+
 //There are two steps you need to modify in this file before normal compilation
 //Only ArduCAM Shield series platform need to select camera module, ArduCAM-Mini series platform doesn't
 
@@ -21,21 +24,18 @@
 	//#define OV7725_CAM
 	//#define OV7670_CAM
 	//#define OV7675_CAM
-    //#define OV2640_CAM
+    #define OV2640_CAM
 	//#define OV3640_CAM
-	 #define OV5642_CAM
-	//#define OV5640_CAM
+	 //#define OV5642_CAM
+	//#define OV5640_CAM 
 	
-	//#define MT9D111_CAM
+	//#define MT9D111A_CAM
+	//#define MT9D111B_CAM
 	//#define MT9M112_CAM
 	//#define MT9V111_CAM	
 	//#define MT9M001_CAM	
 	//#define MT9T112_CAM
 	//#define MT9D112_CAM
 #endif 
-
-
-
-
 
 #endif	//_MEMORYSAVER_
