@@ -205,8 +205,6 @@ void setup(){
 void loop(){
   delay(5000);
   myCAMSaveToSDFile();
-   digitalWrite(CAM_POWER_ON, LOW);//camera power off
- ESP.deepSleep(sleepTimeS * 1000000);//ESP32 sleep 10s 
 }
 
 

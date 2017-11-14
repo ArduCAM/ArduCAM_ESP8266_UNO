@@ -26,7 +26,7 @@
     ||(defined (ARDUCAM_SHIELD_V2) && (defined (OV2640_CAM) || defined (OV5640_CAM) || defined (OV5642_CAM))))
 #error Please select the hardware platform and camera module in the ../libraries/ArduCAM/memorysaver.h file
 #endif
-// set GPIO16 as the slave select :
+// set GPIO2 as the slave select :
 const int CS = 2;
 //Version 2,set GPIO0 as the slave select :
 const int SD_CS = 0;
