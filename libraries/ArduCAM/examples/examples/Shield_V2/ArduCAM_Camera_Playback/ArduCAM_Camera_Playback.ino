@@ -22,23 +22,23 @@
 //This demo was made for Omnivision MT9D111A/MT9D111B/MT9M112/MT9V111_CAM/
 //                                  MT9M001/MT9T112/MT9D112/OV7670/OV7675/
 //                                  OV7725/OV2640/OV5640/OV5642 sensor.
-#if !(defined ARDUCAM_SHIELD_V2 && (defined MT9D111A_CAM|| defined MT9D111B_CAM || defined MT9M112_CAM\ 
+#if !(defined ARDUCAM_SHIELD_V2 && (defined MT9D111A_CAM || defined MT9D111B_CAM || defined MT9M112_CAM \
                                  || defined MT9V111_CAM || defined MT9M001_CAM || defined MT9T112_CAM \
-                                 || defined MT9D112_CAM || defined OV7670_CAM  || defined OV7675_CAM \
-                                 || defined OV7725_CAM  || defined OV2640_CAM  || defined OV5640_CAM \
+                                 || defined MT9D112_CAM || defined OV7670_CAM || defined OV7675_CAM \
+                                 || defined OV7725_CAM || defined OV2640_CAM || defined OV5640_CAM \
                                  || defined OV5642_CAM))
-#error Please select the hardware platform and camera module in the ../libraries/ArduCAM/memorysaver.h file
+  #error Please select the hardware platform and camera module in the ../libraries/ArduCAM/memorysaver.h file
 #endif
 
 #if defined(__arm__)
-#include <itoa.h>
+  #include <itoa.h>
 #endif
 #if defined(ESP8266)
- #define SD_CS 0 
- const int SPI_CS = 16;
-#else 
- #define SD_CS 9 
- const int SPI_CS =10;
+  #define SD_CS 0
+  const int SPI_CS = 16;
+#else
+  #define SD_CS 9
+  const int SPI_CS = 10;
 #endif
 #define BMPIMAGEOFFSET 66
 const char bmp_header[BMPIMAGEOFFSET] PROGMEM =
@@ -50,33 +50,32 @@ const char bmp_header[BMPIMAGEOFFSET] PROGMEM =
   0x00, 0x00
 };
 
-
-#if defined (MT9D111A_CAM)
-ArduCAM myCAM(MT9D111_A, SPI_CS);
-#elif defined (MT9D111B_CAM)
-ArduCAM myCAM(MT9D111_B, SPI_CS);
-#elif defined (MT9M112_CAM)
-ArduCAM myCAM(MT9M112, SPI_CS);
-#elif defined (MT9V111_CAM)
-ArduCAM myCAM(MT9V111, SPI_CS);
-#elif defined (MT9M001_CAM)
-ArduCAM myCAM(MT9M001, SPI_CS);
-#elif defined (MT9T112_CAM)
-ArduCAM myCAM(MT9T112, SPI_CS);
-#elif defined (MT9D112_CAM)
-ArduCAM myCAM(MT9D112, SPI_CS);
-#elif defined (OV7670_CAM)
-ArduCAM myCAM(OV7670, SPI_CS);
-#elif defined (OV7675_CAM)
-ArduCAM myCAM(OV7675, SPI_CS);
-#elif defined (OV7725_CAM)
-ArduCAM myCAM(OV7725, SPI_CS);
-#elif defined (OV2640_CAM)
-ArduCAM myCAM(OV2640, SPI_CS);
-#elif defined (OV5640_CAM)
-ArduCAM myCAM(OV5640, SPI_CS);
-#elif defined (OV5642_CAM)
-ArduCAM myCAM(OV5642, SPI_CS);
+#if defined(MT9D111A_CAM)
+  ArduCAM myCAM(MT9D111_A, SPI_CS);
+#elif defined(MT9D111B_CAM)
+  ArduCAM myCAM(MT9D111_B, SPI_CS);
+#elif defined(MT9M112_CAM)
+  ArduCAM myCAM(MT9M112, SPI_CS);
+#elif defined(MT9V111_CAM)
+  ArduCAM myCAM(MT9V111, SPI_CS);
+#elif defined(MT9M001_CAM)
+  ArduCAM myCAM(MT9M001, SPI_CS);
+#elif defined(MT9T112_CAM)
+  ArduCAM myCAM(MT9T112, SPI_CS);
+#elif defined(MT9D112_CAM)
+  ArduCAM myCAM(MT9D112, SPI_CS);
+#elif defined(OV7670_CAM)
+  ArduCAM myCAM(OV7670, SPI_CS);
+#elif defined(OV7675_CAM)
+  ArduCAM myCAM(OV7675, SPI_CS);
+#elif defined(OV7725_CAM)
+  ArduCAM myCAM(OV7725, SPI_CS);
+#elif defined(OV2640_CAM)
+  ArduCAM myCAM(OV2640, SPI_CS);
+#elif defined(OV5640_CAM)
+  ArduCAM myCAM(OV5640, SPI_CS);
+#elif defined(OV5642_CAM)
+  ArduCAM myCAM(OV5642, SPI_CS);
 #endif
 UTFT myGLCD(SPI_CS);
 
@@ -85,11 +84,11 @@ void setup()
   uint8_t vid, pid;
   uint8_t temp;
 
-#if defined(__SAM3X8E__)
-  Wire1.begin();
-#else
-  Wire.begin();
-#endif
+  #if defined(__SAM3X8E__)
+    Wire1.begin();
+  #else
+    Wire.begin();
+  #endif
   Serial.begin(115200);
   Serial.println("ArduCAM Start!");
 
@@ -105,7 +104,7 @@ void setup()
   {
     Serial.println("SPI interface Error!");
     Serial.println("Check your wiring, make sure using the correct SPI port and chipselect pin");
-  	//while(1);
+    //while(1);
   }
 
   //Change MCU mode
@@ -132,19 +131,19 @@ void loop()
   unsigned long previous_time = 0;
   static int k = 0;
   uint8_t temp;
-  myCAM.set_mode(CAM2LCD_MODE);		 	//Switch to CAM
+  myCAM.set_mode(CAM2LCD_MODE); //Switch to CAM
 
   while (1)
   {
-     #if defined(ESP8266)
-    yield();
-     #endif
-    if (!myCAM.get_bit(ARDUCHIP_TRIG, VSYNC_MASK))		//New Frame is coming
+    #if defined(ESP8266)
+      yield();
+    #endif
+    if (!myCAM.get_bit(ARDUCHIP_TRIG, VSYNC_MASK)) //New Frame is coming
     {
-      myCAM.set_mode(MCU2LCD_MODE);    	//Switch to MCU
+      myCAM.set_mode(MCU2LCD_MODE); //Switch to MCU
       myGLCD.resetXY();
-      myCAM.set_mode(CAM2LCD_MODE);    	//Switch to CAM
-      while (!myCAM.get_bit(ARDUCHIP_TRIG, VSYNC_MASK)); 	//Wait for VSYNC is gone
+      myCAM.set_mode(CAM2LCD_MODE); //Switch to CAM
+      while (!myCAM.get_bit(ARDUCHIP_TRIG, VSYNC_MASK)); //Wait for VSYNC is gone
     }
     else if (myCAM.get_bit(ARDUCHIP_TRIG, SHUTTER_MASK))
     {
@@ -160,16 +159,15 @@ void loop()
       {
         k = k + 1;
         itoa(k, str, 10);
-        strcat(str, ".bmp");				//Generate file name
-        myCAM.set_mode(MCU2LCD_MODE);    	//Switch to MCU, freeze the screen
+        strcat(str, ".bmp");          //Generate file name
+        myCAM.set_mode(MCU2LCD_MODE); //Switch to MCU, freeze the screen
         GrabImage(str);
       }
     }
   }
 }
 
-
-void GrabImage(char* str)
+void GrabImage(char *str)
 {
   File outFile;
   char VH, VL;
@@ -179,7 +177,7 @@ void GrabImage(char* str)
   int i, j = 0;
 
   outFile = SD.open(str, O_WRITE | O_CREAT | O_TRUNC);
-  if (! outFile)
+  if (!outFile)
   {
     Serial.println("Open File Error");
     return;
@@ -196,7 +194,7 @@ void GrabImage(char* str)
 
   k = 0;
   //Write the BMP header
-  for ( i = 0; i < BMPIMAGEOFFSET; i++)
+  for (i = 0; i < BMPIMAGEOFFSET; i++)
   {
     char ch = pgm_read_byte(&bmp_header[i]);
     buf[k++] = ch;
@@ -214,7 +212,7 @@ void GrabImage(char* str)
       buf[k++] = VL;
       buf[k++] = VH;
       #if defined(ESP8266)
-      yield();
+        yield();
       #endif
       //Write image data to bufer if not full
       if (k >= 256)
@@ -239,7 +237,7 @@ void Playback()
   File inFile;
   char str[8];
   int k = 0;
-  myCAM.set_mode(MCU2LCD_MODE);    		//Switch to MCU
+  myCAM.set_mode(MCU2LCD_MODE); //Switch to MCU
   myGLCD.InitLCD(PORTRAIT);
 
   while (1)
@@ -248,7 +246,7 @@ void Playback()
     itoa(k, str, 10);
     strcat(str, ".bmp");
     inFile = SD.open(str, FILE_READ);
-    if (! inFile)
+    if (!inFile)
       return;
     myGLCD.clrScr();
     //myGLCD.resetXY();
@@ -263,7 +261,7 @@ void dispBitmap(File inFile)
 {
   char VH, VL;
   int i, j = 0;
-  for (i = 0 ; i < BMPIMAGEOFFSET; i++)
+  for (i = 0; i < BMPIMAGEOFFSET; i++)
     inFile.read();
   for (i = 0; i < 320; i++)
     for (j = 0; j < 240; j++)
@@ -273,10 +271,9 @@ void dispBitmap(File inFile)
       VH = inFile.read();
       //Serial.write(VH);
       #if defined(ESP8266)
-      yield();
+        yield();
       #endif
       myGLCD.LCD_Write_DATA(VH, VL);
     }
   myGLCD.clrXY();
 }
-
