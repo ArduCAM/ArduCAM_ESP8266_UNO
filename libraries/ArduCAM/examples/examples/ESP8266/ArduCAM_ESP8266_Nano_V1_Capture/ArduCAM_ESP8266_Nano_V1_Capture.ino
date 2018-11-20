@@ -161,11 +161,18 @@ void serverStream()
   WiFiClient client = server.client();
 
   String response = "HTTP/1.1 200 OK\r\n";
+  response += "Refresh: 1; url=/stream\r\n";
   response += "Content-Type: multipart/x-mixed-replace; boundary=frame\r\n\r\n";
   server.sendContent(response);
-
+  int cnt = 0;
   while (1)
   {
+    cnt++;
+    if(cnt > 100){
+      client.stop();
+      is_header = false;
+      break;
+    }
     start_capture();
     while (!myCAM.get_bit(ARDUCHIP_TRIG, CAP_DONE_MASK));
     size_t len = myCAM.read_fifo_length();
